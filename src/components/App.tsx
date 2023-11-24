@@ -1,9 +1,10 @@
 import React, { useState, MouseEventHandler, useEffect } from "react";
 import axios from "axios";
 import TodoForm from "./TodoForm";
+import TodoList from "./TodoList";
 
 // Todo型の定義
-type Todo = {
+export type Todo = {
   id: number;
   content: string;
   done: boolean;
@@ -94,34 +95,19 @@ function App() {
       <h1>進捗管理</h1>
       <TodoForm text={text} setText={setText} onAdd={onAdd} />
 
-      <h2>未完了リスト</h2>
-      <ul>
-        {items.map(
-          (Todo) =>
-            Todo.done === false && (
-              <div key={Todo.id}>
-                <li>{Todo.content}</li>
-                <button onClick={() => Onreverse(Todo.id)}>完了リストへ</button>
-                <button onClick={() => onDelete(Todo.id)}>削除</button>
-              </div>
-            )
-        )}
-      </ul>
-      <h2>完了リスト</h2>
-      <ul>
-        {items.map(
-          (Todo) =>
-            Todo.done === true && (
-              <div key={Todo.id}>
-                <li>{Todo.content}</li>
-                <button onClick={() => Onreverse(Todo.id)}>
-                  未完了リストへ
-                </button>
-                <button onClick={() => onDelete(Todo.id)}>削除</button>
-              </div>
-            )
-        )}
-      </ul>
+      <TodoList
+        Head="未完了リスト"
+        items={items}
+        Onreverse={Onreverse}
+        onDelete={onDelete}
+      />
+
+      <TodoList
+        Head="完了リスト"
+        items={items}
+        Onreverse={Onreverse}
+        onDelete={onDelete}
+      />
     </div>
   );
 }
