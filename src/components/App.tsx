@@ -1,5 +1,6 @@
 import React, { useState, MouseEventHandler, useEffect } from "react";
 import axios from "axios";
+import TodoForm from "./TodoForm";
 
 // Todo型の定義
 type Todo = {
@@ -17,13 +18,10 @@ function App() {
   // Todoアイテムの配列を管理する state
   const [items, setItems] = useState<Todo[]>([]);
 
-  // テキスト入力が変更されたときのイベントハンドラ
-  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
-
   // Todoアイテムを追加するボタンがクリックされたときのイベントハンドラ
-  const onAdd: MouseEventHandler<HTMLButtonElement> = async () => {
+  const onAdd: (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => void = async () => {
     try {
       // ランダムな数値でIdを生成
       let num: number = Math.round(Math.random() * 100000);
@@ -94,8 +92,8 @@ function App() {
   return (
     <div>
       <h1>進捗管理</h1>
-      <input type="text" value={text} onChange={handleTextChange} />
-      <button onClick={onAdd}>+Todoを追加</button>
+      <TodoForm text={text} setText={setText} onAdd={onAdd} />
+
       <h2>未完了リスト</h2>
       <ul>
         {items.map(
