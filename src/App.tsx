@@ -101,14 +101,10 @@ function App() {
         {items.map(
           (Todo) =>
             Todo.done === false && (
-              <div>
-                <li key={Todo.id}>{Todo.content}</li>
-                <button key={Todo.id} onClick={() => Onreverse(Todo.id)}>
-                  完了リストへ
-                </button>
-                <button key={Todo.id} onClick={() => onDelete(Todo.id)}>
-                  削除
-                </button>
+              <div key={Todo.id}>
+                <li>{Todo.content}</li>
+                <button onClick={() => Onreverse(Todo.id)}>完了リストへ</button>
+                <button onClick={() => onDelete(Todo.id)}>削除</button>
               </div>
             )
         )}
@@ -118,14 +114,12 @@ function App() {
         {items.map(
           (Todo) =>
             Todo.done === true && (
-              <div>
-                <li key={Todo.id}>{Todo.content}</li>
-                <button key={Todo.id} onClick={() => Onreverse(Todo.id)}>
+              <div key={Todo.id}>
+                <li>{Todo.content}</li>
+                <button onClick={() => Onreverse(Todo.id)}>
                   未完了リストへ
                 </button>
-                <button key={Todo.id} onClick={() => onDelete(Todo.id)}>
-                  削除
-                </button>
+                <button onClick={() => onDelete(Todo.id)}>削除</button>
               </div>
             )
         )}
