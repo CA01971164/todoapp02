@@ -1,4 +1,4 @@
-import { Todo } from "./App";
+import { Todo } from "../hooks/useTodo";
 import React from "react";
 
 type TodoListProps = {
