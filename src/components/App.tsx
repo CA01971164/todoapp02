@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useTodo from "../hooks/useTodo";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
@@ -15,7 +15,7 @@ function App() {
     fetchData();
   }, []);
 
-  //JSXでコンポーネントの描画
+  //TSXでコンポーネントの描画
   return (
     <div>
       <h1>進捗管理</h1>
