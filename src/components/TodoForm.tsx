@@ -1,6 +1,4 @@
-import { TextField } from "@mui/material";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import { Dispatch, SetStateAction } from "react";
 
 type TodoFormProps = {
   text: string;
@@ -15,19 +13,10 @@ const TodoForm: React.FC<TodoFormProps> = ({ text, setText, onAdd }) => {
   };
 
   return (
-    <Box>
-      <TextField
-        margin="normal"
-        label="ADD TODO"
-        required
-        fullWidth
-        value={text}
-        onChange={handleTextChange}
-      />
-      <Button variant="contained" onClick={onAdd}>
-        +Todoを追加
-      </Button>
-    </Box>
+    <div>
+      <input type="text" value={text} onChange={handleTextChange} />
+      <button onClick={onAdd}>+Todoを追加</button>
+    </div>
   );
 };
 

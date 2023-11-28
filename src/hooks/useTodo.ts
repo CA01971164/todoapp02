@@ -68,6 +68,11 @@ const useTodo = (): useTodoReturn => {
     }
   };
 
+  // コンポーネントがマウントされたときに一度だけ実行されるuseEffect
+  useEffect(() => {
+    fetchData();
+  }, []); //空の依存配列を渡すことで一度だけ実行される
+
   // todo.doneの値を逆にする
   const Onreverse = (id: number): void => {
     setItems((prevItems) =>
