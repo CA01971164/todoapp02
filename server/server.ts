@@ -1,9 +1,9 @@
 // Expressアプリのエントリポイントとしてserver/server.jsを作成し、必要なルートやミドルウェアを設定します。Reactアプリのビルドされたファイルを配信するために、Expressアプリ内でclient/buildにアクセスできるようにします。 これらのことをできるようにしておく。
 
-import express from "express";
-import bodyParser from "body-parser";
-import mysql from "mysql2";
-import path from "path";
+const express = require("express");
+const bodyParser = require("body-parser");
+const mysql = require("mysql2");
+const path = require("path");
 
 const app = express();
 const port = 3001;
@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 // mysql接続情報
 const db = mysql.createConnection({
   host: "localhost",
-  user: "your_username",
-  password: "your_password",
-  database: "todo_database",
+  user: "root",
+  password: "is35ra",
+  database: "todos",
 });
 
 // mysqlの接続
@@ -66,12 +66,12 @@ app.post("/todos", (req, res) => {
   );
 });
 
-// React ファイル　のビルドされたファイルを配信
-app.use(express.static(path.join(__dirname, "client/build")));
+// React ファイル ビルドされたファイルを配信
+app.use(express.static(path.join("C:/todoapp02/client2/build")));
 
-// Reactルートへのすべてのリクエストをビルドされたファイルにリダイレクト
+// React ルートへのすべてのリクエストをビルドされたファイルにリダイレクト
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname));
+  res.sendFile(path.join("C:/todoapp02/client2/build", "index.html"));
 });
 
 app.listen(port, () => {
