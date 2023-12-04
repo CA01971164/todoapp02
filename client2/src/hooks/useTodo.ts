@@ -5,7 +5,7 @@ import axios from "axios";
 type Todo = {
   id: number;
   content: string;
-  done: boolean;
+  done: 0 | 1;
 };
 
 type useTodoReturn = {
@@ -38,7 +38,7 @@ const useTodo = (): useTodoReturn => {
       const requestData: Todo = {
         id: num,
         content: text,
-        done: false,
+        done: 0,
       };
 
       // サーバーにデータを送信
@@ -56,7 +56,6 @@ const useTodo = (): useTodoReturn => {
     try {
       //サーバーのエンドポイント
       const response = await axios.get("http://localhost:3001/todos");
-      console.log(response.data);
       // レスポンスからデータを取得
       const newData: Todo[] = response.data;
       //Todoアイテムを更新
@@ -72,14 +71,14 @@ const useTodo = (): useTodoReturn => {
   const Onreverse = (id: number): void => {
     setItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === id ? { ...item, done: !item.done } : item
+        item.id === id ? { ...item, done: item.done === 1 ? 0 : 1 } : item
       )
     );
   };
 
   const onDelete = (id: number): void => {
     axios
-      .delete(`http://localhost:3001/todos${id}`)
+      .delete(`http://localhost:3001/todos/${id}`)
       .then((response) => {
         console.log("データが削除された", response.data);
       })
