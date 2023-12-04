@@ -16,5 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "client/src/components", "client/src/hooks", "client/src/index.tsx"]
+  "include": ["src", "client2/src/components", "client2/src/hooks", "client2/src/index.tsx"]
 }
