@@ -25,7 +25,7 @@ const TodoList: React.FC<TodoListProps> = ({
         backgroundColor: "background.default",
         padding: 2,
         justifyContent: "center",
-        flexDirection: "colume",
+        flexDirection: "column",
         alignItems: "center",
       }}
     >
