@@ -16,7 +16,7 @@ function App() {
   // useEffectを使ってデータを取得
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   const defaultTheme = createTheme();
 

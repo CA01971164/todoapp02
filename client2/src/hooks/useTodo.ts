@@ -71,7 +71,7 @@ const useTodo = (): useTodoReturn => {
   const Onreverse = (id: number): void => {
     setItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === id ? { ...item, done: item.done === 1 ? 0 : 1 } : item
+        item.id === id ? {...item,  done: item.done === 1 ? 0 : 1 } : item
       )
     );
   };

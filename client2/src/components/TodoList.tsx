@@ -13,8 +13,6 @@ type TodoListProps = {
   onDelete: (id: number) => void;
 };
 
-
-
 const TodoList: React.FC<TodoListProps> = ({
   Head,
   items,
@@ -63,7 +61,7 @@ const TodoList: React.FC<TodoListProps> = ({
         } else if (Head === "完了リスト") {
           return (
             <>
-              {Todo.done === 1 && (
+              {Todo.done === 0 && (
                 <>
                   <Box
                     sx={{
@@ -81,7 +79,7 @@ const TodoList: React.FC<TodoListProps> = ({
                       variant="outlined"
                       onClick={() => Onreverse(Todo.id)}
                     >
-                      完了リストへ
+                      未完了リストへ
                     </Button>
                     <IconButton aria-label="delete">
                       <DeleteIcon onClick={() => onDelete(Todo.id)} />
