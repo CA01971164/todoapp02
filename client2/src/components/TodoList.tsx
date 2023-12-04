@@ -13,6 +13,8 @@ type TodoListProps = {
   onDelete: (id: number) => void;
 };
 
+
+
 const TodoList: React.FC<TodoListProps> = ({
   Head,
   items,
@@ -35,7 +37,7 @@ const TodoList: React.FC<TodoListProps> = ({
         if (Head === "未完了リスト") {
           return (
             <>
-              {Todo.done === false && (
+              {Todo.done === 1 && (
                 <Box
                   sx={{
                     backgroundColor: "#FFC0CB", // 背景色をうすピンクに設定
@@ -61,7 +63,7 @@ const TodoList: React.FC<TodoListProps> = ({
         } else if (Head === "完了リスト") {
           return (
             <>
-              {Todo.done === true && (
+              {Todo.done === 1 && (
                 <>
                   <Box
                     sx={{
