@@ -33,7 +33,7 @@ const useTodo = (): useTodoReturn => {
       let num: number = Math.round(Math.random() * 100000);
 
       //サーバーのエンドポイント
-      const endpoint = "http://localhost:3100/todo";
+      const endpoint = "http://localhost:3001/todos";
       // 新しいTodoアイテムのデータ
       const requestData: Todo = {
         id: num,
@@ -55,7 +55,7 @@ const useTodo = (): useTodoReturn => {
   const fetchData = async (): Promise<void> => {
     try {
       //サーバーのエンドポイント
-      const response = await axios.get("http://localhost:3100/todo");
+      const response = await axios.get("http://localhost:3001/todos");
       console.log(response.data);
       // レスポンスからデータを取得
       const newData: Todo[] = response.data;
@@ -79,7 +79,7 @@ const useTodo = (): useTodoReturn => {
 
   const onDelete = (id: number): void => {
     axios
-      .delete(`http://localhost:3100/todo/${id}`)
+      .delete(`http://localhost:3001/todos${id}`)
       .then((response) => {
         console.log("データが削除された", response.data);
       })
