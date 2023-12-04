@@ -16,7 +16,8 @@ function App() {
   // useEffectを使ってデータを取得
   useEffect(() => {
     fetchData();
-  }, []);
+    console.log(items);
+  }, [fetchData, items]);
 
   const defaultTheme = createTheme();
 
@@ -25,12 +26,10 @@ function App() {
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-
         <Typography component="h1" variant="h4">
           {" "}
           進捗管理{" "}
         </Typography>
-
         <TodoForm text={text} setText={setText} onAdd={onAdd} />
 
         <TodoList
