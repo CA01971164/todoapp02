@@ -68,22 +68,32 @@ const useTodo = (): useTodoReturn => {
   };
 
   // todo.doneの値を逆にする
-  const Onreverse = (id: number): void => {
-    const responseData = items[id];
+  const Onreverse = async (id: number): Promise<void> => {
     try {
-      axios
-        .post(`http://localhost:3001/todos/update/${id}`, responseData)
-        .then((response) => {
-          console.log("サーバーからの応答", response.data);
-        });
+      await fetchData();
+      console.log(items);
+      console.log(items[id]);
+      const responseData = items[id];
+      console.log(responseData);
+      const response = await axios.post(
+        `http://localhost:3001/todos/update/${id}`,
+        responseData
+      );
+
+      console.log("サーバーからの応答", response.data);
+      // データベースが成功しても反映されない場合の対処
+      if (response.data && response.data.affectedRows === 0) {
+        console.warn("データベース更新が反映されませんでした");
+      }
+
+      setItems((prevItems) =>
+        prevItems.map((item) =>
+          item.id === id ? { ...item, done: item.done === 1 ? 0 : 1 } : item
+        )
+      );
     } catch (error) {
       console.log("エラーが発生しました", error);
     }
-    setItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, done: item.done === 1 ? 0 : 1 } : item
-      )
-    );
   };
 
   const onDelete = (id: number): void => {

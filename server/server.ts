@@ -54,7 +54,7 @@ app.get("/todos", (req, res) => {
   });
 });
 
-//todo追加
+
 // todo追加
 app.post("/todos", (req, res) => {
   console.log(req.body);
@@ -75,7 +75,6 @@ app.post("/todos/update/:id", (req, res) => {
 
   // クライアントからのデータを受け取る
   const requestData = req.body;
-
   // MySQLデータベースのクエリを実行してデータを変更
   const updateQuery = `UPDATE todos SET done = ? WHERE id = ?`;
   const updateValues = [requestData.done === 0 ? 1 : 0, requestData.id];
