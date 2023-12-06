@@ -68,7 +68,25 @@ app.post("/todos", (req, res) => {
       }
     }
   );
-}); // React ファイル ビルドされたファイルを配信
+});
+
+app.delete("/todos/:id", (req, res) => {
+  // 削除するデータIDの取得
+  const id = parseInt(req.params.id);
+  // 削除するSQL文
+  const sql = `DELETE FROM todos WHERE id = ${id}`;
+
+  // SQL文を実行
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send("データが削除されました");
+    }
+  });
+});
+
+// React ファイル ビルドされたファイルを配信
 app.use(express.static(path.join("C:/todoapp02/client2/build")));
 
 // React ルートへのすべてのリクエストをビルドされたファイルにリダイレクト
