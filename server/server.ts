@@ -2,9 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require("mysql2");
 const path = require("path");
+require("dotenv").config();
 
 const app = express();
 const port = 3001;
+const dbPassword = process.env.DB_PASSWORD || "defaultPassword";
 
 app.use(bodyParser.json());
 
@@ -12,7 +14,7 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "is35ra",
+  password: dbPassword,
   database: "todos",
 });
 
