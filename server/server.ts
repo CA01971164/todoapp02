@@ -70,6 +70,29 @@ app.post("/todos", (req, res) => {
   );
 });
 
+app.post("/todos/update/:id", (req, res) => {
+  console.log(req.body);
+
+  // クライアントからのデータを受け取る
+  const requestData = req.body;
+
+  // MySQLデータベースのクエリを実行してデータを変更
+  const updateQuery = `UPDATE todos SET done = ${
+    requestData.done === 0 ? 1 : 0
+  } WHERE id = ${requestData.id}`;
+  const updateValues = [requestData.done, requestData.id];
+
+  db.query(updateQuery, updateValues, (error, results) => {
+    if (error) {
+      console.error("データベースの更新に失敗しました:", error);
+      res.status(500).send("Internal Server Error");
+    } else {
+      console.log("データベースの更新が成功しました:", results);
+      res.json(requestData);
+    }
+  });
+});
+
 app.delete("/todos/:id", (req, res) => {
   // 削除するデータIDの取得
   const id = parseInt(req.params.id);

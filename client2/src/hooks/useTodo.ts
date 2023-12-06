@@ -69,6 +69,16 @@ const useTodo = (): useTodoReturn => {
 
   // todo.doneの値を逆にする
   const Onreverse = (id: number): void => {
+    const responseData = items[id];
+    try {
+      axios
+        .post(`http://localhost:3001/todos/update/${id}`, responseData)
+        .then((response) => {
+          console.log("サーバーからの応答", response.data);
+        });
+    } catch (error) {
+      console.log("エラーが発生しました", error);
+    }
     setItems((prevItems) =>
       prevItems.map((item) =>
         item.id === id ? { ...item, done: item.done === 1 ? 0 : 1 } : item
