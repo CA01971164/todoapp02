@@ -68,7 +68,6 @@ app.post("/todos", (req, res) => {
       res.json({ message: `Todo added successfully` });
     }
   });
-  console.log(req.body);
 });
 
 app.post("/todos/update/:id", (req, res) => {
@@ -78,10 +77,8 @@ app.post("/todos/update/:id", (req, res) => {
   const requestData = req.body;
 
   // MySQLデータベースのクエリを実行してデータを変更
-  const updateQuery = `UPDATE todos SET done = ${
-    requestData.done === 0 ? 1 : 0
-  } WHERE id = ${requestData.id}`;
-  const updateValues = [requestData.done, requestData.id];
+  const updateQuery = `UPDATE todos SET done = ? WHERE id = ?`;
+  const updateValues = [requestData.done === 0 ? 1 : 0, requestData.id];
 
   db.query(updateQuery, updateValues, (error, results) => {
     if (error) {
