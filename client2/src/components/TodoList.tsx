@@ -65,7 +65,7 @@ const TodoList: React.FC<TodoListProps> = ({
                 <>
                   <Box
                     sx={{
-                      backgroundColor: "#FFC0CB", // 背景色をうすピンクに設定
+                      backgroundColor: "#ADD8E6",
                       padding: 2,
                       borderRadius: 4, // 任意でボックスの角を丸める
                       marginBottom: 2, // 任意でボックス同士の間隔を設定
