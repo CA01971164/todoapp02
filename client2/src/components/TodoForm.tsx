@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
+import { Button, TextField } from "@mui/material";
 
 type TodoFormProps = {
   text: string;
-  setText: React.Dispatch<React.SetStateAction<string>>;
+  setText: Dispatch<SetStateAction<string>>;
   onAdd: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
@@ -14,8 +15,21 @@ const TodoForm: React.FC<TodoFormProps> = ({ text, setText, onAdd }) => {
 
   return (
     <div>
-      <input type="text" value={text} onChange={handleTextChange} />
-      <button onClick={onAdd}>+Todoを追加</button>
+      <TextField
+        label="Todoを入力"
+        variant="outlined"
+        fullWidth
+        value={text}
+        onChange={handleTextChange}
+      />
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={onAdd}
+        style={{ marginTop: 10 }}
+      >
+        +Todoを追加
+      </Button>
     </div>
   );
 };
