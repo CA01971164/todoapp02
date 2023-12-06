@@ -55,19 +55,20 @@ app.get("/todos", (req, res) => {
 });
 
 //todo追加
+// todo追加
 app.post("/todos", (req, res) => {
-  const { content, done } = req.body;
-  db.query(
-    `INSERT INTO todos (content,done) Value (?,?)`,
-    [content, done],
-    (err) => {
-      if (err) {
-        res.status(500).json({ error: `Error adding todo` });
-      } else {
-        res.json({ message: `Todo added successfully` });
-      }
+  console.log(req.body);
+  const requestData = req.body;
+  const addQuery = `INSERT INTO todos (id, content, done) VALUES (?, ?, ?)`;
+  const addValues = [requestData.id, requestData.content, requestData.done];
+  db.query(addQuery, addValues, (err) => {
+    if (err) {
+      res.status(500).json({ error: `Error adding todo` });
+    } else {
+      res.json({ message: `Todo added successfully` });
     }
-  );
+  });
+  console.log(req.body);
 });
 
 app.post("/todos/update/:id", (req, res) => {
