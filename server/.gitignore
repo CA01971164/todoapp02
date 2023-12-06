@@ -1,0 +1,6 @@
+/node_modules
+
+/routes
+/models
+
+/.env

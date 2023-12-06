@@ -2,18 +2,24 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require("mysql2");
 const path = require("path");
+require("dotenv").config();
 
 const app = express();
 const port = 3001;
+
+const dbHost = process.env.DB_HOST;
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASSWORD;
+const dbDatabase = process.env.DB_DATABASE;
 
 app.use(bodyParser.json());
 
 // mysql接続情報
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "is35ra",
-  database: "todos",
+  host: dbHost,
+  user: dbUser,
+  password: dbPassword,
+  database: dbDatabase,
 });
 
 // mysqlの接続
