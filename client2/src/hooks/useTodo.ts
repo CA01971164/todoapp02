@@ -72,8 +72,8 @@ const useTodo = (): useTodoReturn => {
     try {
       await fetchData();
       console.log(items);
-      console.log(items[id]);
-      const responseData = items[id];
+      console.log(items[0].id);
+      const responseData = items[0].id;
       console.log(responseData);
       const response = await axios.post(
         `http://localhost:3001/todos/update/${id}`,
