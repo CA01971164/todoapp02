@@ -67,13 +67,26 @@ const useTodo = (): useTodoReturn => {
     }
   };
 
+  const findItemById = (
+    items: Record<number, Todo>,
+    id: number
+  ): Todo | null => {
+    for (const key in items) {
+      if (id === items[key].id) {
+        const responseData: Todo = items[key];
+        return responseData;
+      }
+    }
+    console.log("Item not found");
+    return null;
+  };
+
   // todo.doneの値を逆にする
   const Onreverse = async (id: number): Promise<void> => {
     try {
       await fetchData();
-      console.log(items);
-      console.log(items[0].id);
-      const responseData = items[0].id;
+      const responseData = findItemById(items, id);
+
       console.log(responseData);
       const response = await axios.post(
         `http://localhost:3001/todos/update/${id}`,
